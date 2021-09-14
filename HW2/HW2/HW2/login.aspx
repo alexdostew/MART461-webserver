@@ -17,6 +17,9 @@
             <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
             <br />
             <br />
+            <asp:LinkButton ID="btnPasswordReset" runat="server" OnClick="btnPasswordReset_Click">Reset Password</asp:LinkButton>
+            <br />
+            <br />
             <asp:Button ID="btnLogin" runat="server" Text="Log In" />
             <br />
             <br />
