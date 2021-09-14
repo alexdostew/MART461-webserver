@@ -18,5 +18,10 @@ namespace HW2
         {
             Response.Redirect("register.aspx");
         }
+
+        protected void btnPasswordReset_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
