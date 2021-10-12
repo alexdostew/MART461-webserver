@@ -27,6 +27,11 @@
             <br />
             <asp:Button ID="btnUpdate" runat="server" Text="Update User" OnClick="btnUpdate_Click" />
 
+            <br />
+            <br />
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete User" />
+            <br />
+
             <p>
             <asp:DropDownList ID="ddlUsers" runat="server" AutoPostBack="true"></asp:DropDownList>
             </p>

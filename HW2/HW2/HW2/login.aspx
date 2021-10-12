@@ -13,14 +13,7 @@
             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="lblPassword" runat="server" Text="Password: "></asp:Label>
-            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
-            <br />
-            <br />
-            <asp:LinkButton ID="btnPasswordReset" runat="server" OnClick="btnPasswordReset_Click">Reset Password</asp:LinkButton>
-            <br />
-            <br />
-            <asp:Button ID="btnLogin" runat="server" Text="Log In" />
+            <asp:Button ID="btnLogin" runat="server" Text="Log In" OnClick="btnLogin_Click" />
             <br />
             <br />
             <asp:Button ID="btnSignup" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />

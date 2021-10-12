@@ -17,16 +17,17 @@ namespace HW2
             if (!Page.IsPostBack)
             {
                 fillUsers();
+                Response.Write("No Postback");
             } else
             {
                 int userID = Convert.ToInt32(ddlUsers.SelectedValue);
                 Session["userId"] = userID;
-
-                if (!Convert.ToBoolean(Session["dontfillusers"]))
+                Response.Write("Postback");
+                if (Convert.ToBoolean(Session["dontfillusers"]) == false)
                 {
                     fillSpecificUser(userID);
+                    Response.Write("Filled Specific User");
                 }
-                
             }
             
             
@@ -110,7 +111,28 @@ namespace HW2
             myCommand.ExecuteNonQuery();
             myConnection.Close();
 
-            Session["dontfillusers"] = false;
+            fillUsers();
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            int userID = Convert.ToInt32(Session["userID"]);
+
+            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+
+            string myQuery = "DELETE FROM Users WHERE userId = " + userID;
+
+            SqlConnection myConnection;
+
+            myConnection = new SqlConnection(myConnectionString);
+            myConnection.Open();
+
+            SqlCommand myCommand = new SqlCommand(myQuery);
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.Text;
+
+            myCommand.ExecuteNonQuery();
+            myConnection.Close();
         }
     }
 }
