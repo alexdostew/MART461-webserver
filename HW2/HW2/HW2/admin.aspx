@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="HW2.register" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="admin.aspx.cs" Inherits="HW2.admin" %>
 
 <!DOCTYPE html>
 
@@ -25,7 +25,11 @@
             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="btnSignup" runat="server" Text="Sign Up" OnClick="btnSignup_Click" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update User" OnClick="btnUpdate_Click" />
+
+            <p>
+            <asp:DropDownList ID="ddlUsers" runat="server" AutoPostBack="true"></asp:DropDownList>
+            </p>
 
             <p>
                 <asp:GridView ID="gvUsers" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
