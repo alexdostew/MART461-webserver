@@ -31,6 +31,9 @@
             <br />
             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete User" />
             <br />
+            <br />
+            <asp:Button ID="btnInsert" runat="server" OnClick="btnInsert_Click" Text="Insert New User" />
+            <br />
 
             <p>
             <asp:DropDownList ID="ddlUsers" runat="server" AutoPostBack="true"></asp:DropDownList>

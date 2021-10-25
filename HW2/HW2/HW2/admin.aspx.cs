@@ -17,74 +17,41 @@ namespace HW2
             if (!Page.IsPostBack)
             {
                 fillUsers();
-                Response.Write("No Postback");
             } else
             {
                 int userID = Convert.ToInt32(ddlUsers.SelectedValue);
-                Session["userId"] = userID;
-                Response.Write("Postback");
-                if (Convert.ToBoolean(Session["dontfillusers"]) == false)
+
+                if(userID > 0 && Session["userid"] == null)
                 {
+                    Session["userid"] = userID;
                     fillSpecificUser(userID);
-                    Response.Write("Filled Specific User");
                 }
             }
-            
-            
         }
 
         private void fillUsers()
         {
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection;
-
-            myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
-
-            string myQuery = "SELECT userId, username + ': ' + firstname + ' ' + lastname as fulluser, email FROM Users";
-
-            DataSet myDataSet = new DataSet();
-            SqlCommand myCommand = new SqlCommand(myQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.Text;
-
-            SqlDataAdapter myAdapter = new SqlDataAdapter(myCommand);
-            myAdapter.Fill(myDataSet);
-            myConnection.Close();
+            Users myUser = new Users();
+            DataSet myDataSet = myUser.getAllUsers();
 
             ddlUsers.DataSource = myDataSet.Tables[0];
             ddlUsers.DataTextField = "fulluser";
             ddlUsers.DataValueField = "userId";
             ddlUsers.DataBind();
+            ddlUsers.Items.Insert(0, new ListItem("-- choose --", "-1"));
             gvUsers.DataSource = myDataSet.Tables[0];
             gvUsers.DataBind();
         }
 
         private void fillSpecificUser(int userId)
         {
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection;
-
-            myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
-
-            string myQuery = "SELECT username, firstname, lastname, email FROM Users WHERE userId = " + userId;
-
-            DataSet myDataSet = new DataSet();
-            SqlCommand myCommand = new SqlCommand(myQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.Text;
-
-            SqlDataAdapter myAdapter = new SqlDataAdapter(myCommand);
-            myAdapter.Fill(myDataSet);
-            myConnection.Close();
+            Users myUser = new Users();
+            DataSet myDataSet = myUser.getSpecificUser(userId);
 
             txtUsername.Text = myDataSet.Tables[0].Rows[0]["username"].ToString();
             txtFirstName.Text = myDataSet.Tables[0].Rows[0]["firstname"].ToString();
             txtLastName.Text = myDataSet.Tables[0].Rows[0]["lastname"].ToString();
             txtEmail.Text = myDataSet.Tables[0].Rows[0]["email"].ToString();
-
-            Session["dontfillusers"] = true;
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -93,46 +60,48 @@ namespace HW2
             string fName = txtFirstName.Text;
             string lName = txtLastName.Text;
             string email = txtEmail.Text;
-            int userID = Convert.ToInt32(Session["userID"]);
+            int userID = Convert.ToInt32(Session["userid"]);
 
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            Users myUser = new Users();
+            myUser.updateUser(userID, userName, fName, lName, email);
 
-            string myQuery = "UPDATE Users SET username ='" + userName + "', firstname= '" + fName + "', lastname='" + lName + "', email='" + email + "' WHERE userId = " + userID;
-
-            SqlConnection myConnection;
-
-            myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
-
-            SqlCommand myCommand = new SqlCommand(myQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.Text;
-
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-
+            resetFields();
             fillUsers();
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            int userID = Convert.ToInt32(Session["userID"]);
+            int userID = Convert.ToInt32(Session["userid"]);
 
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            Users myUser = new Users();
+            myUser.deleteUser(userID);
 
-            string myQuery = "DELETE FROM Users WHERE userId = " + userID;
+            
+            fillUsers();
+            resetFields();
+        }
 
-            SqlConnection myConnection;
+        protected void btnInsert_Click(object sender, EventArgs e)
+        {
+            string userName = txtUsername.Text;
+            string fName = txtFirstName.Text;
+            string lName = txtLastName.Text;
+            string email = txtEmail.Text;
 
-            myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
+            Users myUser = new Users();
+            myUser.insertNewUser(userName, fName, lName, email);
 
-            SqlCommand myCommand = new SqlCommand(myQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.Text;
+            resetFields();
+            fillUsers();
+        }
 
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+        private void resetFields()
+        {
+            txtUsername.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtEmail.Text = "";
+            Session["userid"] = null;
         }
     }
 }

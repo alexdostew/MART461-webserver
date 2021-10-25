@@ -28,49 +28,29 @@ namespace HW2
             string lName = txtLastName.Text;
             string email = txtEmail.Text;
 
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-
-            string myQuery = "INSERT INTO Users (Username, FirstName, LastName, email) " +
-                "VALUES ('" + userName + "', '" + fName + "', '" + lName + "', '" + email + "');";
-
-            SqlConnection myConnection;
-
-            myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
-
-            SqlCommand myCommand = new SqlCommand(myQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.Text;
-
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            Users myUser = new Users();
+            myUser.insertNewUser(userName, fName, lName, email);
 
             showTable();
         }
 
         private void showTable()
         {
-            string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection myConnection;
-
-            myConnection = new SqlConnection(myConnectionString);
-            myConnection.Open();
-
-            string myQuery = "SELECT * FROM Users";
-
-            DataSet myDataSet = new DataSet();
-            SqlCommand myCommand = new SqlCommand(myQuery);
-            myCommand.Connection = myConnection;
-            myCommand.CommandType = CommandType.Text;
-
-            SqlDataAdapter myAdapter = new SqlDataAdapter(myCommand);
-            myAdapter.Fill(myDataSet);
-            myConnection.Close();
-
+            Users myUser = new Users();
+            DataSet myDataSet = myUser.getAllUsers();
             gvUsers.DataSource = myDataSet.Tables[0];
             gvUsers.DataBind();
+            resetFields();
         }
 
-        
+        private void resetFields()
+        {
+            txtUsername.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtEmail.Text = "";
+            Session["userid"] = null;
+        }
+
     }
 }
