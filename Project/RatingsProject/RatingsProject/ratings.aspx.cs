@@ -53,7 +53,7 @@ namespace RatingsProject
                     filePath = dFolder + fileName;
                     if(File.Exists(filePath))
                     {
-                        //temp - add id# or username to images to prevent duplicate names
+                        //TODO - add id# or username to images to prevent duplicate names
                         imgPath = fileName;
                     } else
                     {
