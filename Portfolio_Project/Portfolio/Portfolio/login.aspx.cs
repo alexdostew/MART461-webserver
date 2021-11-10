@@ -17,65 +17,27 @@ namespace Portfolio
             {
                 if (txtPwd.Text != "" && txtUsername.Text != "")
                 {
+                    Users user = new Users();
                     string username = txtUsername.Text;
-                    string pass = txtPwd.Text;
-                    byte[] salt = Convert.FromBase64String("4804nGDafdCprL0kdN32pjiLuugxZrP3");
-                    byte[] usersalt;
-                    byte[] pwd = Utilities.CreateHash(pass, salt);
-                    byte[] userpwd = null;
-
-                    string myConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-                    string myQuery = "SELECT * FROM users WHERE username='" + username + "'";
-
-
-                    SqlConnection myConnection;
-
-                    myConnection = new SqlConnection(myConnectionString);
-                    myConnection.Open();
-
-                    SqlDataReader reader;
-                    SqlCommand myCommand = new SqlCommand(myQuery);
-                    myCommand.Connection = myConnection;
-                    myCommand.CommandType = CommandType.Text;
-
-                    reader = myCommand.ExecuteReader();
-                    if (reader.HasRows)
+                    DataSet userData = user.getSpecificUser(username);
+                    if (userData.Tables[0].Rows.Count > 0)
                     {
-                        while (reader.Read())
+                        Response.Write("User Exists!");
+                        string pass = txtPwd.Text;
+                        string usersalt = userData.Tables[0].Rows[0]["salt"].ToString();
+                        byte[] userpwd = Utilities.CreateHash(pass, Convert.FromBase64String(usersalt));
+                        userData = user.getSpecificUserWithPwd(username, userpwd);
+                        if (userData.Tables[0].Rows.Count > 0)
                         {
-                            usersalt = Convert.FromBase64String(reader.GetString(6));
-                            userpwd = Utilities.CreateHash(pass, usersalt);
+                            Response.Write("Passwords Match!");
+                        } else
+                        {
+                            Response.Write("Passwords Do Not Match!");
                         }
-                    }
-                    else
+                    } else
                     {
-                        Response.Write("Please enter a valid username/password");
+                        Response.Write("User Does Not Exist!");
                     }
-
-                    reader.Close();
-
-                    if (userpwd != null && userpwd.Length > 0)
-                    {
-                        string pwdQuery = "spSelectUser";
-                        SqlDataReader pwdReader;
-                        SqlCommand pwdCommand = new SqlCommand(pwdQuery);
-                        pwdCommand.Connection = myConnection;
-                        pwdCommand.CommandType = CommandType.StoredProcedure;
-                        pwdCommand.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
-                        pwdCommand.Parameters.Add("@pwd", SqlDbType.VarBinary).Value = userpwd;
-
-                        pwdReader = pwdCommand.ExecuteReader();
-                        if (pwdReader.HasRows)
-                        {
-                            Response.Write("Login Success!");
-                        }
-                        else
-                        {
-                            Response.Write("Please enter a valid username/password");
-                        }
-                        pwdReader.Close();
-                    }
-                    myConnection.Close();
                 } else
                 {
                     Response.Write("Please enter a username/password");

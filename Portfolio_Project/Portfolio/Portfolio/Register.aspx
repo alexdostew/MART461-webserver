@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="btn-submit">
-                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit"/>
                 </div>
             </form>
         </div>
