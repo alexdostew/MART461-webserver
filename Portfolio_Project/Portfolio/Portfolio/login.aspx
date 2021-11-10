@@ -27,7 +27,11 @@
 
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
 
+                    
+
                 </div>
+                <asp:GridView ID="gvUsers" runat="server">
+                    </asp:GridView>
             </form>
         </div>
     </div>
