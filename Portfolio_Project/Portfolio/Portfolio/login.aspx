@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="navbar">
-
+        <div id="userDiv" class="username" runat="server"><a href="login.aspx">Log In</a></div>
     </div>
     
     <div class="page-container">
@@ -24,16 +24,13 @@
                 </div>
 
                 <div class="btn-submit">
-
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
-
-                    
-
                 </div>
                 <asp:GridView ID="gvUsers" runat="server">
                     </asp:GridView>
             </form>
         </div>
+        <p>Don't have an account? <a href="register.aspx">Sign Up</a></p>
     </div>
     
 </body>

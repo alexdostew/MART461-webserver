@@ -34,6 +34,7 @@
                 </div>
             </form>
         </div>
+        <p>Already have an account? <a href="login.aspx">Log in</a></p>
     </div>
 </body>
 </html>
