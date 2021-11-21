@@ -116,3 +116,11 @@ D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\obj\Debug\Port
 D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\obj\Debug\Portfolio.csproj.CopyComplete
 D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\obj\Debug\Portfolio.dll
 D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\obj\Debug\Portfolio.pdb
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\EntityFramework.dll
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\EntityFramework.SqlServer.dll
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\Microsoft.AspNet.Identity.Core.dll
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\EntityFramework.xml
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\EntityFramework.SqlServer.xml
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\Microsoft.AspNet.Identity.Core.xml
+D:\School\MART461-webserver\Portfolio_Project\Portfolio\Portfolio\bin\Microsoft.AspNet.Identity.EntityFramework.xml

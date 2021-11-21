@@ -28,7 +28,6 @@ namespace Portfolio
                         string firstname = txtFirstName.Text;
                         string lastname = txtLastName.Text;
 
-
                         user.insertNewUser(username, pwd, email, firstname, lastname, saltstring);
 
                         Response.Redirect("login.aspx");
@@ -37,6 +36,21 @@ namespace Portfolio
                 {
                     Response.Write("Please fill out all fields");
                 }
+            }
+            if (Session["username"] != null)
+            {
+                userItem.Visible = true;
+                logoutBtn.Visible = true;
+                loginBtn.Visible = false;
+                signupBtn.Visible = false;
+                userItem.InnerHtml = "<a href=gallery.aspx/" + Session["username"].ToString() + ">" + Session["username"].ToString() + "</a>";
+            }
+            else
+            {
+                userItem.Visible = false;
+                logoutBtn.Visible = false;
+                loginBtn.Visible = true;
+                signupBtn.Visible = true;
             }
         }
     }

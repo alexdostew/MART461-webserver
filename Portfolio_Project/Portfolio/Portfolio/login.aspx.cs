@@ -12,11 +12,11 @@ namespace Portfolio
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Users user = new Users();
             if (Page.IsPostBack)
             {
                 if (txtPwd.Text != "" && txtUsername.Text != "")
                 {
-                    Users user = new Users();
                     string username = txtUsername.Text;
                     DataSet userData = user.getSpecificUser(username);
                     if (userData.Tables[0].Rows.Count > 0)
@@ -44,10 +44,17 @@ namespace Portfolio
             }
             if (Session["username"] != null)
             {
-                userDiv.InnerHtml = "<a href=''>" + Session["username"].ToString() + "</a>";
+                userItem.Visible = true;
+                logoutBtn.Visible = true;
+                loginBtn.Visible = false;
+                signupBtn.Visible = false;
+                userItem.InnerHtml = "<a href=gallery.aspx?user=" + Session["username"].ToString() + ">" + Session["username"].ToString() + "</a>";
             } else
             {
-                userDiv.InnerHtml = "<a href='login.aspx'>Log In</a>";
+                userItem.Visible = false;
+                logoutBtn.Visible = false;
+                loginBtn.Visible = true;
+                signupBtn.Visible = true;
             }
             
         }

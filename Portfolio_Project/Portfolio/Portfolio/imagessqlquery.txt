@@ -1,0 +1,18 @@
+--INSERT INTO Users (username, firstname, lastname, organizationname, jobtitle, email)
+--VALUES ('ads3', 'alex', 'stewart', 'asteworg', 'ceo', 'ads3@randemail.com')
+
+--INSERT INTO addresses (address, address2, city, stateid, zipcode, addresstypeid, locationname, userid)
+--VALUES ('123 main', 'A', 'missoula', 1, '59801', 1, 'anywhere', 3)
+
+DELETE FROM addresses
+WHERE userId = 3
+
+--UPDATE addresses SET userid = 2
+--WHERE addressid = 2
+
+SELECT * FROM Users
+SELECT * FROM addresses
+
+SELECT users.username, users.firstname, users.lastname, addresses.[address], addresses.city FROM users
+INNER JOIN addresses
+ON users.userId = addresses.userid
