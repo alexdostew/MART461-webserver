@@ -13,6 +13,10 @@
             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
             <br />
             <br />
+            <asp:Label ID="lblPwd" runat="server" Text="Password: "></asp:Label>
+            <asp:TextBox ID="txtPwd" runat="server"></asp:TextBox>
+            <br />
+            <br />
             <asp:Label ID="lblFirstName" runat="server" Text="First Name: "></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
             <br />

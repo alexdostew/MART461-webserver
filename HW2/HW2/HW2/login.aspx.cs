@@ -14,22 +14,39 @@ namespace HW2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void btnSignup_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("register.aspx");
-        }
-
-        protected void btnPasswordReset_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnLogin_Click(object sender, EventArgs e)
-        {
-            string userName = txtUsername.Text;
+            Users user = new Users();
+            if (Page.IsPostBack)
+            {
+                if (txtPwd.Text != "" && txtUsername.Text != "")
+                {
+                    string username = txtUsername.Text;
+                    DataSet userData = user.getSpecificUsername(username);
+                    if (userData.Tables[0].Rows.Count > 0)
+                    {
+                        string pass = txtPwd.Text;
+                        string usersalt = userData.Tables[0].Rows[0]["salt"].ToString();
+                        byte[] userpwd = Utilities.CreateHash(pass, Convert.FromBase64String(usersalt));
+                        userData = user.getSpecificUserWithPwd(username, userpwd);
+                        if (userData.Tables[0].Rows.Count > 0)
+                        {
+                            Session["username"] = userData.Tables[0].Rows[0]["username"].ToString();
+                            Response.Write("Username + password match!");
+                        }
+                        else
+                        {
+                            Response.Write("Username or password is invalid");
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("Username or password is invalid");
+                    }
+                }
+                else
+                {
+                    Response.Write("Please enter a username/password");
+                }
+            }
         }
     }
 }

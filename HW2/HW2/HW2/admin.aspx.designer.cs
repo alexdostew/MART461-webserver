@@ -42,6 +42,24 @@ namespace HW2
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
 
         /// <summary>
+        /// lblPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPwd;
+
+        /// <summary>
+        /// txtPwd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPwd;
+
+        /// <summary>
         /// lblFirstName control.
         /// </summary>
         /// <remarks>

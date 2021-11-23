@@ -68,7 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin.aspx" />
+    <Content Include="error\badrequest.aspx" />
+    <Content Include="error\error.aspx" />
+    <Content Include="error\internalerror.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="error\notfound.aspx" />
     <Content Include="register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -80,13 +84,41 @@
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="error\badrequest.aspx.cs">
+      <DependentUpon>badrequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error\badrequest.aspx.designer.cs">
+      <DependentUpon>badrequest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
+    <Compile Include="error\error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error\error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error\internalerror.aspx.cs">
+      <DependentUpon>internalerror.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error\internalerror.aspx.designer.cs">
+      <DependentUpon>internalerror.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error\notfound.aspx.cs">
+      <DependentUpon>notfound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error\notfound.aspx.designer.cs">
+      <DependentUpon>notfound.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">
@@ -97,6 +129,7 @@
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

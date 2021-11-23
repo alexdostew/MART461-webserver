@@ -13,10 +13,14 @@
             <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="btnLogin" runat="server" Text="Log In" OnClick="btnLogin_Click" />
+            <asp:Label ID="lblPwd" runat="server" Text="Password: "></asp:Label>
+            <asp:TextBox ID="txtPwd" runat="server"></asp:TextBox>
             <br />
             <br />
-            <asp:Button ID="btnSignup" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />
+            <asp:Button ID="btnLogin" runat="server" Text="Log In" />
+            <br />
+            <br />
+            <p>Don't have an account? <a href="register.aspx">Sign Up</a></p>
         </div>
     </form>
 </body>

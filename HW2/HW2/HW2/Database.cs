@@ -78,5 +78,20 @@ namespace HW2
 
             closeDatabase(myConnection);
         }
+
+        public int countQuery(SqlParameter[] sqlParameters, string myQuery)
+        {
+            int count = 0;
+            SqlConnection myConnection = openDatabase();
+
+            SqlCommand myCommand = new SqlCommand(myQuery);
+            myCommand.Connection = myConnection;
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.Parameters.AddRange(sqlParameters);
+            count = (int)myCommand.ExecuteScalar();
+
+            closeDatabase(myConnection);
+            return count;
+        }
     }
 }

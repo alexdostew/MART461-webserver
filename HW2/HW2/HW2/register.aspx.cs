@@ -23,15 +23,33 @@ namespace HW2
 
         protected void btnSignup_Click(object sender, EventArgs e)
         {
-            string userName = txtUsername.Text;
-            string fName = txtFirstName.Text;
-            string lName = txtLastName.Text;
-            string email = txtEmail.Text;
+            if (txtUsername.Text != "" && txtPwd.Text != "" && txtEmail.Text != "" && txtFirstName.Text != "" && txtLastName.Text != "")
+            {
+                Users user = new Users();
+                string username = txtUsername.Text;
+                if (user.checkUsername(username))
+                {
+                    Response.Write("username not available");
+                }
+                else
+                {
+                    byte[] salt = Utilities.CreateSalt();
+                    byte[] pwd = Utilities.CreateHash(txtPwd.Text, salt);
+                    string saltstring = Convert.ToBase64String(salt);
+                    string email = txtEmail.Text;
+                    string firstname = txtFirstName.Text;
+                    string lastname = txtLastName.Text;
 
-            Users myUser = new Users();
-            myUser.insertNewUser(userName, fName, lName, email);
+                    user.insertNewUser(username, pwd, email, firstname, lastname, saltstring);
 
-            showTable();
+                    Response.Redirect("login.aspx");
+                    showTable();
+                }
+            }
+            else
+            {
+                Response.Write("Please fill out all fields");
+            }
         }
 
         private void showTable()

@@ -87,9 +87,12 @@ namespace HW2
             string fName = txtFirstName.Text;
             string lName = txtLastName.Text;
             string email = txtEmail.Text;
+            byte[] salt = Utilities.CreateSalt();
+            byte[] pwd = Utilities.CreateHash(txtPwd.Text, salt);
+            string saltstring = Convert.ToBase64String(salt);
 
             Users myUser = new Users();
-            myUser.insertNewUser(userName, fName, lName, email);
+            myUser.insertNewUser(userName, pwd, fName, lName, email, saltstring);
 
             resetFields();
             fillUsers();
