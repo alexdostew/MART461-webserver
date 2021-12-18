@@ -56,8 +56,7 @@ namespace Portfolio
             for (int i = 0; i < userImages.Tables[0].Rows.Count; i++)
             {
                 string bgImage = "background-image: url('./images/'" + userImages.Tables[0].Rows[i]["imgpath"] + "')";
-                imagesContainer.InnerHtml += "<div style=\"background-image: url('./images/" + userImages.Tables[0].Rows[i]["imgpath"] + "')\" class='img-block'></div>";
-
+                imagesContainer.InnerHtml += "<div id=" + userImages.Tables[0].Rows[i]["imgid"] + " style=\"background-image: url('./images/" + Request.QueryString["user"] + "/" + userImages.Tables[0].Rows[i]["imgpath"] + "')\" class='img-block'></div>";
             }
         }
 
@@ -75,7 +74,7 @@ namespace Portfolio
                 DateTime date = DateTime.Now;
 
                 //image folder location
-                dFolder = Server.MapPath("./images/");
+                dFolder = Server.MapPath("./images/" + Session["username"].ToString() + "/");
 
                 //get file name
                 fileName = date.ToString("yyyymmddMMss") + ImageUpload.PostedFile.FileName;
@@ -103,6 +102,7 @@ namespace Portfolio
                         DataSet userData = user.getSpecificUser(Session["username"].ToString());
                         int userID = (int)userData.Tables[0].Rows[0]["userid"];
                         image.InsertImage(userID, title, desc, date, fileName);
+                        Response.Redirect("Gallery.aspx?user=" + Request.QueryString["user"]);
                     }
                 }
             }

@@ -79,6 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Artwork.aspx" />
     <Content Include="Gallery.aspx" />
     <Content Include="Global.asax" />
     <Content Include="login.aspx" />
@@ -88,6 +89,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Artwork.aspx.cs">
+      <DependentUpon>Artwork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Artwork.aspx.designer.cs">
+      <DependentUpon>Artwork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Comments.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Gallery.aspx.cs">
       <DependentUpon>Gallery.aspx</DependentUpon>

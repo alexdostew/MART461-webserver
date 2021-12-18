@@ -37,5 +37,17 @@ namespace Portfolio
             DataSet myDataSet = myDatabase.getDataWithParameters(sqlParameters, myQuery);
             return myDataSet;
         }
+
+        public DataSet getImagesWithID(int imgID)
+        {
+            Database myDatabase = new Database();
+
+            string myQuery = "spSelectImageID";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("imgID", imgID);
+
+            DataSet myDataSet = myDatabase.getDataWithParameters(sqlParameters, myQuery);
+            return myDataSet;
+        }
     }
 }

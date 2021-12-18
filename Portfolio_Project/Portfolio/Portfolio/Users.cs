@@ -52,6 +52,18 @@ namespace Portfolio
             return myDataSet;
         }
 
+        public DataSet getSpecificUserWithID(int userID)
+        {
+            Database myDatabase = new Database();
+
+            string myQuery = "spSelectUserWithID";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("userID", userID);
+
+            DataSet myDataSet = myDatabase.getDataWithParameters(sqlParameters, myQuery);
+            return myDataSet;
+        }
+
         public DataSet getSpecificUserWithPwd(string username, byte[] pwd)
         {
             Database myDatabase = new Database();

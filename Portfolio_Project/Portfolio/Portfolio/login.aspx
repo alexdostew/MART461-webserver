@@ -24,7 +24,7 @@
                     <asp:Label ID="lblUsername" runat="server" Text="Username:"></asp:Label>
                     <asp:TextBox CssClass="text-input" ID="txtUsername" runat="server"></asp:TextBox>
                     <asp:Label ID="lblPassword" runat="server" Text="Password:"></asp:Label>
-                    <asp:TextBox CssClass="text-input" ID="txtPwd" runat="server"></asp:TextBox>
+                    <asp:TextBox TextMode="Password" CssClass="text-input" ID="txtPwd" runat="server"></asp:TextBox>
                 </div>
 
 

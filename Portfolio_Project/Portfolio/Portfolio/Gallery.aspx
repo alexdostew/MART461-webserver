@@ -21,11 +21,11 @@
     
     <div id="pageContainer" runat="server" class="page-container">
         <div id="imagesContainer" class="images-container" runat="server"></div>
-            <form id="uploadForm" runat="server" method="post" enctype="multipart/form-data">
+            <form id="galleryForm" runat="server" method="post" enctype="multipart/form-data">
 
                 <div id="uploadContainer" class="item-container overlay" runat="server">
 
-                    <button type="button" id="closeBtn" class="btn-close" runat="server">X</button>
+                    <button type="button" class="btn-close" runat="server">X</button>
 
                     <div class="form-container">
                         <h2>Upload Image</h2>
@@ -52,14 +52,36 @@
                         <asp:Button CssClass="btn-submit" ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" ValidationGroup="userimages" />
                     </div>
                 </div>
+
+                <div id="imageDescription" class="item-container overlay" runat="server">
+
+                    <button type="button" class="btn-close" runat="server">X</button>
+
+                    <div class="form-container">
+                        <img id="selectedImg" src="" />
+                        <h2 id="imageTitle"></h2>
+                        <label>Description:</label>
+                        <p id="imgDesc"></p>
+                        <label>Comments:</label>
+                        <div id="imgComments" runat="server"></div>
+                        <asp:TextBox ID="TextBox2" runat="server" Height="202px" Width="459px" TextMode="MultiLine"></asp:TextBox>
+
+                        <asp:Button CssClass="btn-submit" ID="Button2" runat="server" Text="Submit" OnClick="btnSubmit_Click" ValidationGroup="userimages" />
+                    </div>
+                </div>
             </form>
         <script type="text/javascript">
             $('#uploadContainer').hide();
+            $('#imageDescription').hide();
             $('#openPanel').click(function () {
                 $('#uploadContainer').fadeIn("fast");
             });
-            $('#closeBtn').click(function () {
-                $('#uploadContainer').fadeOut("fast");
+            $('.btn-close').click(function () {
+                $(this).parent().fadeOut("fast");
+            });
+            $('.img-block').click(function () {
+                var imgid = $(this).attr('id');
+                window.location.href = './Artwork.aspx?imgid=' + imgid;
             });
         </script>
     </div>
